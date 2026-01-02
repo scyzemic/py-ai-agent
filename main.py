@@ -1,4 +1,5 @@
 import os
+import argparse
 from dotenv import load_dotenv
 from google import genai
 
@@ -10,12 +11,15 @@ if not api_key:
 
 client = genai.Client(api_key=api_key)
 
-user_prompt = "Why is Boot.dev such a great place to learn backend development? Use one paragraph maximum."
+parser = argparse.ArgumentParser(description="Chatbot")
+parser.add_argument("user_prompt", type=str, help="User prompt")
+args = parser.parse_args()
 
-print(f"User prompt: {user_prompt}")
+
+print(f"User prompt: {args.user_prompt}")
 
 generated_content_response = client.models.generate_content(
-    model="gemini-2.5-flash", contents=user_prompt
+    model="gemini-2.5-flash", contents=args.user_prompt
 )
 
 usage_metadata = generated_content_response.usage_metadata
