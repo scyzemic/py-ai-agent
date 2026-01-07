@@ -3,7 +3,7 @@ from functions.write_file import write_file
 
 def test():
     result = write_file("calculator", "lorem.txt", "wait, this isn't lorem ipsum")
-    print("Result for current 'lorem.txt' file:")
+    print("Result for 'lorem.txt' file:")
     print(result)
     print("")
 
