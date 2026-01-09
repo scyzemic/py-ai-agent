@@ -39,23 +39,21 @@ def run_python_file(working_directory, file_path, args=None):
 
 schema_run_python_file = types.FunctionDeclaration(
     name="run_python_file",
-    description="Executes a specified Python file relative to the working directory",
+    description="Executes a specified Python file within the working directory and returns its output",
     parameters=types.Schema(
         type=types.Type.OBJECT,
         properties={
             "file_path": types.Schema(
                 type=types.Type.STRING,
-                description="Python file path to be executed, relative to the working directory",
+                description="Path to the Python file to run, relative to the working directory",
             ),
             "args": types.Schema(
                 type=types.Type.ARRAY,
-                items=types.Schema(
-                    type=types.Type.STRING,
-                    description="arguments passed to the subprocess, will be prepended with ['python','{file_path}']",
-                ),
+                items=types.Schema(type=types.Type.STRING),
                 nullable=True,
-                description="Optional list of arguments for the file execution",
+                description="Optional list of arguments to pass to the Python script",
             ),
         },
+        required=["file_path"],
     ),
 )
